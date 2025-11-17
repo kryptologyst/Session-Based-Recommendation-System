@@ -1,0 +1,37 @@
+data:
+  n_sessions: 1000
+  n_items: 100
+  n_users: 200
+  session_length_range: [3, 20]
+  min_session_length: 2
+  max_session_length: 50
+  test_ratio: 0.2
+
+models:
+  itemknn:
+    k: 20
+    similarity_metric: cosine
+  
+  gru4rec:
+    embedding_dim: 50
+    hidden_dim: 100
+    n_layers: 1
+    dropout: 0.25
+    learning_rate: 0.001
+    batch_size: 32
+    n_epochs: 10
+  
+  sasrec:
+    embedding_dim: 50
+    n_heads: 1
+    n_layers: 2
+    dropout: 0.5
+    learning_rate: 0.001
+    batch_size: 32
+    n_epochs: 10
+    max_length: 50
+
+evaluation:
+  k_values: [5, 10, 20]
+  top_k: 20
+  primary_metric: ndcg@10
